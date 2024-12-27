@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+<!--    引入外包配置文件-->
+    <properties resource="db.properties"/>
+
+<!--    给实体类起别名-->
+    <typeAliases>
+<!--        给指定包下的类起别名，默认别名就是这个类的类名，并且不区分大小写，推荐-->
+        <package name="com.devil.entity"/>
+    </typeAliases>
+<!--    环境 ， default： 默认使用哪个环境-->
+    <environments default="development">
+        <environment id="development">
+<!--            事务，默认是使用JDBC的事务管理-->
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+                <!--            最大的存活连接数-->
+                <property name="poolMaximumActiveConnections" value="10"/>
+<!--                最大的空闲连接数-->
+                <property name="poolMaximumIdleConnections" value="5"/>
+            </dataSource>
+        </environment>
+
+        <environment id="devil">
+            <!--事务管理 默认使用JDBC的事务管理-->
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/mybatis?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=false"/>
+                <property name="username" value="root"/>
+                <property name="password" value="root"/>
+            </dataSource>
+        </environment>
+
+    </environments>
+
+    <mappers>
+        <mapper resource="com/devil/mapper/UserMapper.xml"/>
+    </mappers>
+</configuration>

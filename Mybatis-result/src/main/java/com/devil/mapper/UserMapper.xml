@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace：命名空间，绑定的是一个对应的mapper接口-->
+<mapper namespace="com.devil.mapper.UserMapper">
+
+<!--    结果集映射-->
+    <resultMap id="userMapper" type="User">
+<!--        property: 指的是实体类中的名字
+            column: 数据库中的名字
+-->
+        <result property="uid" column="uid"/>
+        <result property="username" column="username"/>
+        <result property="userPwd" column="user_pwd"/>
+    </resultMap>
+    <!--
+    TODO id: 对应的是 namespace中的方法名
+     resultType：Sql语句的返回值
+     parameterType：参数类型
+    -->
+<select id="getUserById" resultMap="userMapper">
+  select * from sys_user where uid = #{uid}
+</select>
+</mapper>

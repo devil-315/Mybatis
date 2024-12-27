@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace：命名空间，绑定的是一个对应的mapper接口-->
+<mapper namespace="com.devil.mapper.UserMapper">
+    <!--
+    TODO id: 对应的是 namespace中的方法名
+     resultType：Sql语句的返回值
+     parameterType：参数类型
+    -->
+<!--    sql语句-->
+    <select id="getUserList" resultType="User">
+        select * from user
+    </select>
+
+    <select id="getUserById" resultType="com.devil.entity.User">
+        select * from user where id = #{id}
+    </select>
+
+    <insert id="addUser" parameterType="com.devil.entity.User">
+        insert into user(name,pwd) values (#{name},#{pwd})
+    </insert>
+
+    <update id="updateUser" parameterType="com.devil.entity.User">
+        update user set name = #{name}, pwd = #{pwd} where id = #{id}
+    </update>
+
+    <delete id="deleteUser" parameterType="int">
+        delete from user where id = #{id}
+    </delete>
+
+    <select id="getUserLike" resultType="com.devil.entity.User">
+        select * from user where name like "%"#{name}"%"
+    </select>
+</mapper>

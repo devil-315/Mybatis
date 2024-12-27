@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace：命名空间，绑定的是一个对应的mapper接口-->
+<mapper namespace="com.devil.mapper.Mapper">
+    <!--
+    TODO id: 对应的是 namespace中的方法名
+     resultType：Sql语句的返回值
+     parameterType：参数类型
+    -->
+  <select id="getUserList" resultType="User">
+    select * from user
+  </select>
+
+</mapper>

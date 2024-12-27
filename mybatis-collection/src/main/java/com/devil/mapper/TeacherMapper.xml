@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace：命名空间，绑定的是一个对应的mapper接口-->
+<mapper namespace="com.devil.mapper.TeacherMapper">
+
+    <resultMap id="teacherMap" type="teacher">
+        <result property="tid" column="tid"/>
+        <result property="tname" column="tname"/>
+
+<!--        一对多 collection-->
+<!--        <collection property="students" ofType="Student">-->
+<!--            <result column="sid" property="sid"/>-->
+<!--            <result column="sname" property="sname"/>-->
+<!--            <result column="tid" property="tid"/>-->
+<!--        </collection>-->
+
+        <collection property="students" ofType="Student" resultMap="studentMap"/>
+    </resultMap>
+
+    <resultMap id="studentMap" type="Student">
+        <result property="sid" column="sid"/>
+        <result property="sname" column="sname"/>
+        <result property="tid" column="tid"/>
+    </resultMap>
+    <!--
+    TODO id: 对应的是 namespace中的方法名
+     resultType：Sql语句的返回值
+     parameterType：参数类型
+    -->
+<select id="getTeacher" resultMap="teacherMap">
+  select * from teacher t ,student s where t.tid = s.sid
+</select>
+</mapper>

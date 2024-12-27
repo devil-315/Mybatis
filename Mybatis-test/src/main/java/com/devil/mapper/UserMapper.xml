@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace：命名空间，绑定的是一个对应的mapper接口-->
+<mapper namespace="com.devil.mapper.UserMapper">
+  <!--
+    TODO id: 对应的是 namespace中的方法名
+     resultType：Sql语句的返回值
+     parameterType：参数类型
+    -->
+
+  <insert id="add" parameterType="com.devil.entity.User">
+    insert into user(name,pwd) values(#{name},#{pwd})
+  </insert>
+
+  <delete id="delete" parameterType="int">
+    delete from user where id = #{id}
+  </delete>
+
+  <update id="update" parameterType="com.devil.entity.User">
+    update user set name = #{name}, pwd = #{pwd} where id = #{id}
+  </update>
+
+  <select id="select" resultType="com.devil.entity.User" parameterType="int">
+    select * from user where id = #{id}
+  </select>
+</mapper>
